@@ -1,0 +1,29 @@
+﻿@model IEnumerable<AziendaEdile.Models.Pagamento>
+
+@{
+    ViewData["Title"] = "Elenco Pagamenti";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Periodo Inizio</th>
+            <th>Periodo Fine</th>
+            <th>Importo</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.PeriodoInizio)</td>
+                <td>@Html.DisplayFor(modelItem => item.PeriodoFine)</td>
+                <td>@Html.DisplayFor(modelItem => item.Importo)</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a asp-action="Create">Crea un nuovo pagamento</a>

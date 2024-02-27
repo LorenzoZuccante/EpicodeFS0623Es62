@@ -1,0 +1,50 @@
+﻿@model List<AziendaEdile.Models.Dipendente>
+
+@{
+    ViewData["Title"] = "Elenco Dipendenti";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<p>
+    <a asp-action="CreateDipendente">Crea Nuovo Dipendente</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>Cognome</th>
+            <th>Indirizzo</th>
+            <th>Codice Fiscale</th>
+            <th>Stato Civile</th>
+            <th>Figli a Carico</th>
+            <th>Mansione</th>
+            <th>Azioni</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.ID</td>
+                <td>@item.Nome</td>
+                <td>@item.Cognome</td>
+                <td>@item.Indirizzo</td>
+                <td>@item.CodiceFiscale</td>
+                <td>@item.Coniugato</td>
+                <td>@item.NumeroDiFigli</td>
+                <td>@item.Mansione</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.ID">Modifica</a> |
+                    <a asp-action="Details" asp-route-id="@item.ID">Dettagli</a> |
+                    <form method="post" action="@Url.Action("DeleteDirect", "Dipendente")">
+                        <input type="hidden" name="id" value="@item.ID" />
+                        <button type="submit">Elimina</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
